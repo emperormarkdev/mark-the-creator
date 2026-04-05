@@ -237,8 +237,8 @@ const Spotify = () => (
   </svg>
 );
 
-const PORTFOLIO_URL = "https://your-portfolio.com";
-const SPOTIFY_URL   = "https://open.spotify.com/playlist/your-playlist-id";
+const PORTFOLIO_URL = "https://www.behance.net/chukwudimark1";
+const SPOTIFY_URL   = "https://open.spotify.com/artist/0ruSPUfDomJIG7UoC1rs2M";
 
 export default function Portfolio() {
   const curRef = useRef();
@@ -284,9 +284,9 @@ export default function Portfolio() {
 
         <F d={1}>
           <p className="line">
-            Brand designer. I build identities that stick —{" "}
+            I'm a Brand Designer. I give brands, companies and startups unique identities —{" "}
             <a className="pill pill-dark" href={PORTFOLIO_URL} target="_blank" rel="noreferrer">
-              see my work <Arrow />
+              see my portfolio <Arrow />
             </a>
           </p>
         </F>
@@ -295,7 +295,7 @@ export default function Portfolio() {
 
         <F d={2}>
           <p className="line">
-            When I'm not designing, I'm in <span className="hl">VS Code</span> building apps and websites. Just love making things.
+            When I'm not in figma creating brand projects, I'm in <span className="hl">VS Code</span> building cool apps and websites. Just love making things.
           </p>
         </F>
 
@@ -303,9 +303,9 @@ export default function Portfolio() {
 
         <F d={3}>
           <p className="line">
-            Off the screen? Listening to <em>The Dynamites.</em> They were cool.{" "}
+           By the way, <em>The Dynamites.</em> They were really cool.{" "}
             <a className="pill pill-green" href={SPOTIFY_URL} target="_blank" rel="noreferrer">
-              <Spotify /> playlist
+              <Spotify /> Check them out
             </a>
           </p>
         </F>
@@ -313,8 +313,8 @@ export default function Portfolio() {
       </div>
 
       <footer>
-        <F d={4}><span className="foot-cta">Let's work.</span></F>
-        <span className="foot-copy">© {new Date().getFullYear()} Mark</span>
+        <F d={4}><span className="foot-cta">Let's Create.</span></F>
+        <span className="foot-copy">© {new Date().getFullYear()} markthecreator</span>
       </footer>
     </>
   );
