@@ -26,16 +26,13 @@ const css = `
   }
 
   .cur-label {
-    position: absolute;
-    top: 20px; left: 12px;
-    background: ${G};
-    color: #000;
-    font-family: 'Poppins', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    padding: 2px 8px 3px;
-    border-radius: 0 5px 5px 5px;
-    white-space: nowrap;
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .cur {
+      display: none;
+    }
   }
 
   /* Layout */
@@ -245,8 +242,17 @@ export default function Portfolio() {
   const pos = useRef({ x: -300, y: -300 });
   const raf = useRef();
   const logoUrl = '/logo.png';
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
     const mv = (e) => { pos.current = { x: e.clientX, y: e.clientY }; };
     window.addEventListener("mousemove", mv);
     const tick = () => {
@@ -255,19 +261,20 @@ export default function Portfolio() {
     };
     raf.current = requestAnimationFrame(tick);
     return () => { window.removeEventListener("mousemove", mv); cancelAnimationFrame(raf.current); };
-  }, []);
+  }, [isMobile]);
 
   return (
     <>
       <style>{FONTS}{css}</style>
 
-      {/* Figma cursor */}
-      <div ref={curRef} className="cur">
-        <svg width="18" height="24" viewBox="0 0 18 24" fill="none">
-          <path d="M2.5 2.5L15.5 10L9.5 12L7 19.5L2.5 2.5Z" fill="#111" stroke="#fff" strokeWidth="1.4" strokeLinejoin="round" />
-        </svg>
-        <div className="cur-label">Mark</div>
-      </div>
+      {/* Figma cursor - hidden on mobile */}
+      {!isMobile && (
+        <div ref={curRef} className="cur">
+          <svg width="18" height="24" viewBox="0 0 18 24" fill="none">
+            <path d="M2.5 2.5L15.5 10L9.5 12L7 19.5L2.5 2.5Z" fill="#111" stroke="#fff" strokeWidth="1.4" strokeLinejoin="round" />
+          </svg>
+        </div>
+      )}
 
       {/* Top bar */}
       <div className="bar">
@@ -284,7 +291,7 @@ export default function Portfolio() {
 
         <F d={1}>
           <p className="line">
-            I'm a Brand Designer. I give brands, companies and startups unique identities —{" "}
+            I'm a Brand Designer. I give brands, companies and startups unique identities.{" "}
             <a className="pill pill-dark" href={PORTFOLIO_URL} target="_blank" rel="noreferrer">
               see my portfolio <Arrow />
             </a>
